@@ -1,0 +1,6 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+When installing packages, running scripts or doing anything what has to do with package management use `pnpm`
