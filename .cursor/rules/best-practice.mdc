@@ -1,0 +1,6 @@
+---
+description: When generating new code.
+globs:
+alwaysApply: false
+---
+Ensure all AI-generated code follows modern software engineering best practices with emphasis on **scalability**, **dynamic architecture**, and **clean, maintainable patterns** across frontend, backend, and infrastructure codebases.

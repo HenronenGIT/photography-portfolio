@@ -1,0 +1,6 @@
+---
+description: When generating code that relates to next.js
+globs:
+alwaysApply: false
+---
+Ensure all code involving **Next.js** follows the framework’s best practices and fully utilizes its core features — including file-system routing, data fetching strategies, optimization primitives, and configuration.
