@@ -3,7 +3,7 @@
 import FilterBar from '@/components/FilterBar'
 import PhotoCard from '@/components/PhotoCard'
 import PhotoDialog from '@/components/PhotoDialog'
-import { Photo } from '@/lib/google-photos'
+import { Photo } from '@/shared/types/types'
 import { useState } from 'react'
 
 interface PortfolioViewProps {
