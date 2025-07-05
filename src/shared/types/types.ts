@@ -4,6 +4,8 @@ export interface Photo {
   title: string
   category: string
   location?: string
+  createdAt?: string
+  size?: number
 }
 
 export interface Album {
