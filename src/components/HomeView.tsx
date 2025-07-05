@@ -3,13 +3,13 @@
 import PhotoCard from '@/components/PhotoCard'
 import PhotoDialog from '@/components/PhotoDialog'
 import { Button } from '@/components/ui/button'
-import { Photo } from '@/lib/google-photos'
+import { Photo } from '@/shared/types/types'
 import { Camera, Instagram, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
 interface HomeViewProps {
-    featuredPhotos: Photo[];
+  featuredPhotos: Photo[]
 }
 
 export default function HomeView({ featuredPhotos }: HomeViewProps) {

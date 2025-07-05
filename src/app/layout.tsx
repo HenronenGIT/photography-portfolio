@@ -1,20 +1,20 @@
-import "@/styles/globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Providers from '@/components/Providers'
+import '@/styles/globals.css'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
 const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-});
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: "Henri Maronen Photography",
+  title: 'Henri Maronen Photography',
   description:
-    "Exploring the raw beauty of landscapes and the stories they tell",
-  keywords: ["photography", "landscape", "nature", "portfolio"],
-  authors: [{ name: "Henri Maronen" }],
-  viewport: "width=device-width, initial-scale=1",
-};
+    'Exploring the raw beauty of landscapes and the stories they tell',
+  keywords: ['photography', 'landscape', 'nature', 'portfolio'],
+  authors: [{ name: 'Henri Maronen' }],
+}
 
 export default function RootLayout({
   children,
@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="antialiased">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }

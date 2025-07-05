@@ -1,41 +1,33 @@
+'use client'
 
-"use client"
-
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { X } from 'lucide-react';
-import NextImage from 'next/image';
-
-interface Photo {
-  id: number;
-  src: string;
-  title: string;
-  category: string;
-  location?: string;
-}
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Photo } from '@/shared/types/types'
+import { X } from 'lucide-react'
+import NextImage from 'next/image'
 
 interface PhotoDialogProps {
-  photo: Photo | null;
-  isOpen: boolean;
-  onClose: () => void;
+  photo: Photo | null
+  isOpen: boolean
+  onClose: () => void
 }
 
 const PhotoDialog = ({ photo, isOpen, onClose }: PhotoDialogProps) => {
-  if (!photo) return null;
+  if (!photo) return null
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-full h-[90vh] border-none bg-transparent p-0 overflow-hidden">
-        <div className="relative w-full h-full flex items-center justify-center">
+      <DialogContent className="h-[90vh] w-full max-w-4xl overflow-hidden border-none bg-transparent p-0">
+        <div className="relative flex h-full w-full items-center justify-center">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/40 transition-colors"
+            className="absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/20 text-white backdrop-blur-sm transition-colors hover:bg-black/40"
           >
             <X size={20} />
           </button>
 
           {/* Image */}
-          <div className="relative w-full h-full">
+          <div className="relative h-full w-full">
             <NextImage
               src={photo.src}
               alt={photo.title}
@@ -47,11 +39,11 @@ const PhotoDialog = ({ photo, isOpen, onClose }: PhotoDialogProps) => {
 
           {/* Photo details */}
           <div className="absolute bottom-6 left-6 text-white">
-            <h3 className="text-xl font-light tracking-wide font-serif mb-1">
+            <h3 className="mb-1 font-serif text-xl font-light tracking-wide">
               {photo.title}
             </h3>
             {photo.location && (
-              <p className="text-sm text-neutral-300 font-light tracking-wider uppercase">
+              <p className="text-sm font-light uppercase tracking-wider text-neutral-300">
                 {photo.location}
               </p>
             )}
@@ -59,7 +51,7 @@ const PhotoDialog = ({ photo, isOpen, onClose }: PhotoDialogProps) => {
         </div>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default PhotoDialog;
+export default PhotoDialog

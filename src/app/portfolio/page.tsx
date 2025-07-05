@@ -1,84 +1,65 @@
 'use client'
 
-import FilterBar from '@/components/FilterBar';
-import PhotoCard from '@/components/PhotoCard';
-import PhotoDialog from '@/components/PhotoDialog';
-import { useState } from 'react';
+import FilterBar from '@/components/FilterBar'
+import Gallery from '@/components/Gallery'
+import { Photo } from '@/shared/types/types'
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 
-interface Photo {
-  id: number;
-  src: string;
-  title: string;
-  category: string;
-  location?: string;
+const fetchPhotos = async (): Promise<Photo[]> => {
+  const res = await fetch('/api/images')
+  if (!res.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return res.json()
 }
 
 export default function PortfolioPage() {
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('All')
+  const {
+    data: photos = [],
+    isLoading,
+    isError,
+  } = useQuery<Photo[]>({
+    queryKey: ['photos'],
+    queryFn: fetchPhotos,
+  })
 
-  const photos: Photo[] = [
- 
-  ];
+  // TODO: Implement category filtering based on actual data
+  const categories = ['All', 'Landscapes', 'Travel', 'People', 'Nature']
 
-  const categories = ['All', 'Landscapes', 'Travel', 'People', 'Nature'];
-
-  const filteredPhotos = activeFilter === 'All'
-    ? photos
-    : photos.filter(photo => photo.category === activeFilter);
-
-  const handlePhotoClick = (photo: Photo) => {
-    setSelectedPhoto(photo);
-    setIsDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false);
-    setSelectedPhoto(null);
-  };
+  const filteredPhotos =
+    activeFilter === 'All'
+      ? photos
+      : photos.filter((photo) => photo.category === activeFilter)
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <div className="max-w-6xl mx-auto px-8 py-16">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h1 className="text-4xl font-light text-neutral-900 tracking-wider mb-4 font-serif">
+        <div className="mb-16 text-center">
+          <h1 className="mb-4 font-serif text-4xl font-light tracking-wider text-neutral-900 lg:text-5xl">
             Portfolio
           </h1>
-          <div className="w-12 h-px bg-neutral-400 mx-auto"></div>
+          <div className="mx-auto h-px w-16 bg-neutral-300"></div>
         </div>
 
         {/* Filter Bar */}
-        <FilterBar
-          categories={categories}
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
-        />
+        <div className="mb-12">
+          <FilterBar
+            categories={categories}
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+          />
+        </div>
 
         {/* Photo Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPhotos.map((photo, index) => (
-            <div
-              key={photo.id}
-              className="opacity-0 animate-fade-in"
-              style={{
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: 'both'
-              }}
-            >
-              <PhotoCard photo={photo} onPhotoClick={handlePhotoClick} />
-            </div>
-          ))}
-        </div>
+        <Gallery
+          photos={filteredPhotos}
+          isLoading={isLoading}
+          isError={isError}
+        />
       </div>
-
-      {/* Photo Dialog */}
-      <PhotoDialog
-        photo={selectedPhoto}
-        isOpen={isDialogOpen}
-        onClose={handleCloseDialog}
-      />
     </div>
-  );
+  )
 }

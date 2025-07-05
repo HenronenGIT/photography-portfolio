@@ -1,7 +1,7 @@
 export const PhotoCardSkeleton = () => {
-    return (
-      <div className="group relative overflow-hidden bg-neutral-100 aspect-[4/5]">
-        <div className="absolute inset-0 bg-neutral-200 animate-pulse"></div>
-      </div>
-    );
-};
+  return (
+    <div className="group relative aspect-[4/5] overflow-hidden bg-neutral-100">
+      <div className="absolute inset-0 animate-pulse bg-neutral-200"></div>
+    </div>
+  )
+}

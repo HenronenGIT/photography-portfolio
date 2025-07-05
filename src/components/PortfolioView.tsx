@@ -46,10 +46,7 @@ export default function PortfolioView({ photos }: PortfolioViewProps) {
           <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4">
             {photos.map((photo) => (
               <div key={photo.id} className="mb-6 break-inside-avoid">
-                <PhotoCard
-                  photo={photo}
-                  onPhotoClick={handlePhotoClick}
-                />
+                <PhotoCard photo={photo} onPhotoClick={handlePhotoClick} />
               </div>
             ))}
           </div>
