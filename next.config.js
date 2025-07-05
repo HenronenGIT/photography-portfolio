@@ -20,6 +20,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons'],
   },
+  serverExternalPackages: ['pino', 'pino-pretty'],
 }
 
 export default nextConfig

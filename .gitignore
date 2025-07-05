@@ -151,3 +151,12 @@ temp/
 token.json
 .env
 .env*.local
+
+# Local environment variables
+.env*.local
+*.env
+
+# gcp credentials
+service-account-key.json
+*service-account*.json
+portfolio-service-account.json
