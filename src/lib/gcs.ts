@@ -31,7 +31,9 @@ export async function getPhotosFromGCS(prefix?: string): Promise<Photo[]> {
 
     const photos: Photo[] = await Promise.all(
       files
-        .filter((file: File) => !file.name.endsWith('/') && file.name !== prefix)
+        .filter(
+          (file: File) => !file.name.endsWith('/') && file.name !== prefix,
+        )
         .map(async (file: File, index: number) => {
           const [signedUrl] = await file.getSignedUrl({
             action: 'read',
