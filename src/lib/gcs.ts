@@ -1,4 +1,4 @@
-import { File, Storage } from '@google-cloud/storage';
+import { File, Storage, StorageOptions } from '@google-cloud/storage';
 
 import { Photo } from '@/shared/types/types';
 
@@ -10,9 +10,26 @@ if (!projectId) {
   throw new Error('GOOGLE_CLOUD_PROJECT_ID environment variable is required.');
 }
 
-export const storage = new Storage({
+const gcpCredentials = process.env.GCP_CREDENTIALS;
+
+const storageConfig: StorageOptions = {
   projectId,
-});
+};
+
+if (gcpCredentials) {
+  try {
+    const credentials = JSON.parse(gcpCredentials);
+    storageConfig.credentials = credentials;
+    logger.info('Using GCP_CREDENTIALS for GCS authentication.');
+  } catch (error) {
+    logger.error({ error }, 'Failed to parse GCP_CREDENTIALS');
+    throw new Error('Failed to parse GCP_CREDENTIALS');
+  }
+} else {
+  logger.info('Using Application Default Credentials for GCS authentication.');
+}
+
+export const storage = new Storage(storageConfig);
 
 const bucketName = process.env.GCS_BUCKET_NAME;
 if (!bucketName) {
