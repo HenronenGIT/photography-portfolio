@@ -48,9 +48,9 @@ export default function HomeView({ featuredPhotos }: HomeViewProps) {
       </section>
 
       {/* Photo Grid Section */}
-      <section className="px-8 pb-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <section className="pb-20">
+        <div className="">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {featuredPhotos.map((photo, index) => (
               <div
                 key={photo.id}
