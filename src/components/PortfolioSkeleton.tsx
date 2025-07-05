@@ -1,4 +1,4 @@
-import { PhotoCardSkeleton } from './PhotoCardSkeleton'
+import { PhotoCardSkeleton } from './PhotoCardSkeleton';
 
 export const PortfolioSkeleton = () => {
   return (
@@ -21,5 +21,5 @@ export const PortfolioSkeleton = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};

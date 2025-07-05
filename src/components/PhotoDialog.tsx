@@ -1,18 +1,19 @@
-'use client'
+'use client';
 
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { Photo } from '@/shared/types/types'
-import { X } from 'lucide-react'
-import NextImage from 'next/image'
+import { X } from 'lucide-react';
+import NextImage from 'next/image';
+
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Photo } from '@/shared/types/types';
 
 interface PhotoDialogProps {
-  photo: Photo | null
-  isOpen: boolean
-  onClose: () => void
+  photo: Photo | null;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const PhotoDialog = ({ photo, isOpen, onClose }: PhotoDialogProps) => {
-  if (!photo) return null
+  if (!photo) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -51,7 +52,7 @@ const PhotoDialog = ({ photo, isOpen, onClose }: PhotoDialogProps) => {
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default PhotoDialog
+export default PhotoDialog;

@@ -1,21 +1,22 @@
-'use client'
+'use client';
 
-import FilterBar from '@/components/FilterBar'
-import Gallery from '@/components/Gallery'
-import { Photo } from '@/shared/types/types'
-import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+
+import FilterBar from '@/components/FilterBar';
+import Gallery from '@/components/Gallery';
+import { Photo } from '@/shared/types/types';
 
 const fetchPhotos = async (): Promise<Photo[]> => {
-  const res = await fetch('/api/images')
+  const res = await fetch('/api/images');
   if (!res.ok) {
-    throw new Error('Network response was not ok')
+    throw new Error('Network response was not ok');
   }
-  return res.json()
-}
+  return res.json();
+};
 
 export default function PortfolioPage() {
-  const [activeFilter, setActiveFilter] = useState('All')
+  const [activeFilter, setActiveFilter] = useState('All');
   const {
     data: photos = [],
     isLoading,
@@ -23,15 +24,15 @@ export default function PortfolioPage() {
   } = useQuery<Photo[]>({
     queryKey: ['photos'],
     queryFn: fetchPhotos,
-  })
+  });
 
   // TODO: Implement category filtering based on actual data
-  const categories = ['All', 'Landscapes', 'Travel', 'People', 'Nature']
+  const categories = ['All', 'Landscapes', 'Travel', 'People', 'Nature'];
 
   const filteredPhotos =
     activeFilter === 'All'
       ? photos
-      : photos.filter((photo) => photo.category === activeFilter)
+      : photos.filter((photo) => photo.category === activeFilter);
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -61,5 +62,5 @@ export default function PortfolioPage() {
         />
       </div>
     </div>
-  )
+  );
 }

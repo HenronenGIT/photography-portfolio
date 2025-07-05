@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 
 interface FilterBarProps {
-  categories: string[]
-  activeFilter: string
-  onFilterChange: (filter: string) => void
+  categories: string[];
+  activeFilter: string;
+  onFilterChange: (filter: string) => void;
 }
 
 const FilterBar = ({
@@ -36,7 +36,7 @@ const FilterBar = ({
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default FilterBar
+export default FilterBar;

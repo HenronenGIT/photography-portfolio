@@ -1,18 +1,19 @@
-'use client'
+'use client';
 
-import { Photo } from '@/shared/types/types'
-import { AlertTriangle } from 'lucide-react'
-import Image from 'next/image'
-import { useState } from 'react'
+import { AlertTriangle } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import { Photo } from '@/shared/types/types';
 
 interface PhotoCardProps {
-  photo: Photo
-  onPhotoClick: (photo: Photo) => void
+  photo: Photo;
+  onPhotoClick: (photo: Photo) => void;
 }
 
 const PhotoCard = ({ photo, onPhotoClick }: PhotoCardProps) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   if (isError) {
     return (
@@ -21,7 +22,7 @@ const PhotoCard = ({ photo, onPhotoClick }: PhotoCardProps) => {
         <h3 className="mt-4 font-semibold text-neutral-700">{photo.title}</h3>
         <p className="mt-1 text-xs text-neutral-500">Could not load image</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -62,7 +63,7 @@ const PhotoCard = ({ photo, onPhotoClick }: PhotoCardProps) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PhotoCard
+export default PhotoCard;

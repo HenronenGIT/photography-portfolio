@@ -1,12 +1,14 @@
-import Providers from '@/components/Providers'
-import '@/styles/globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import '@/styles/globals.css';
+
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+
+import Providers from '@/components/Providers';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: 'Henri Maronen Photography',
@@ -14,12 +16,12 @@ export const metadata: Metadata = {
     'Exploring the raw beauty of landscapes and the stories they tell',
   keywords: ['photography', 'landscape', 'nature', 'portfolio'],
   authors: [{ name: 'Henri Maronen' }],
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className={inter.className}>
@@ -27,5 +29,5 @@ export default function RootLayout({
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }

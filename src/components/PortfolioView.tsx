@@ -1,31 +1,32 @@
-'use client'
+'use client';
 
-import FilterBar from '@/components/FilterBar'
-import PhotoCard from '@/components/PhotoCard'
-import PhotoDialog from '@/components/PhotoDialog'
-import { Photo } from '@/shared/types/types'
-import { useState } from 'react'
+import { useState } from 'react';
+
+import FilterBar from '@/components/FilterBar';
+import PhotoCard from '@/components/PhotoCard';
+import PhotoDialog from '@/components/PhotoDialog';
+import { Photo } from '@/shared/types/types';
 
 interface PortfolioViewProps {
-  photos: Photo[]
+  photos: Photo[];
 }
 
 export default function PortfolioView({ photos }: PortfolioViewProps) {
-  const [activeFilter, setActiveFilter] = useState('All')
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const categories = ['All']
+  const categories = ['All'];
 
   const handlePhotoClick = (photo: Photo) => {
-    setSelectedPhoto(photo)
-    setIsDialogOpen(true)
-  }
+    setSelectedPhoto(photo);
+    setIsDialogOpen(true);
+  };
 
   const handleCloseDialog = () => {
-    setIsDialogOpen(false)
-    setSelectedPhoto(null)
-  }
+    setIsDialogOpen(false);
+    setSelectedPhoto(null);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -59,5 +60,5 @@ export default function PortfolioView({ photos }: PortfolioViewProps) {
         onClose={handleCloseDialog}
       />
     </div>
-  )
+  );
 }

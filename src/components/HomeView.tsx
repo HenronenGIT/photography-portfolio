@@ -1,32 +1,33 @@
-'use client'
+'use client';
 
-import PhotoCard from '@/components/PhotoCard'
-import PhotoDialog from '@/components/PhotoDialog'
-import { Button } from '@/components/ui/button'
-import { Photo } from '@/shared/types/types'
-import { ArrowDown, Camera, Instagram, Mail, Phone } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
+import { ArrowDown, Camera, Instagram, Mail, Phone } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import PhotoCard from '@/components/PhotoCard';
+import PhotoDialog from '@/components/PhotoDialog';
+import { Button } from '@/components/ui/button';
+import { Photo } from '@/shared/types/types';
 
 interface HomeViewProps {
-  heroPhoto: Photo
-  galleryPhotos: Photo[]
+  heroPhoto: Photo;
+  galleryPhotos: Photo[];
 }
 
 export default function HomeView({ heroPhoto, galleryPhotos }: HomeViewProps) {
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handlePhotoClick = (photo: Photo) => {
-    setSelectedPhoto(photo)
-    setIsDialogOpen(true)
-  }
+    setSelectedPhoto(photo);
+    setIsDialogOpen(true);
+  };
 
   const handleCloseDialog = () => {
-    setIsDialogOpen(false)
-    setSelectedPhoto(null)
-  }
+    setIsDialogOpen(false);
+    setSelectedPhoto(null);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -148,5 +149,5 @@ export default function HomeView({ heroPhoto, galleryPhotos }: HomeViewProps) {
         onClose={handleCloseDialog}
       />
     </div>
-  )
+  );
 }

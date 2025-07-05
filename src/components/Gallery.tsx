@@ -1,27 +1,29 @@
-'use client'
+'use client';
 
-import { Photo } from '@/shared/types/types'
-import { useState } from 'react'
-import PhotoCard from './PhotoCard'
-import { PhotoCardSkeleton } from './PhotoCardSkeleton'
-import PhotoDialog from './PhotoDialog'
+import { useState } from 'react';
+
+import { Photo } from '@/shared/types/types';
+
+import PhotoCard from './PhotoCard';
+import { PhotoCardSkeleton } from './PhotoCardSkeleton';
+import PhotoDialog from './PhotoDialog';
 
 interface GalleryProps {
-  photos: Photo[]
-  isLoading: boolean
-  isError?: boolean
+  photos: Photo[];
+  isLoading: boolean;
+  isError?: boolean;
 }
 
 const Gallery = ({ photos, isLoading, isError }: GalleryProps) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
   const handlePhotoClick = (photo: Photo) => {
-    setSelectedPhoto(photo)
-  }
+    setSelectedPhoto(photo);
+  };
 
   const handleCloseDialog = () => {
-    setSelectedPhoto(null)
-  }
+    setSelectedPhoto(null);
+  };
 
   if (isError) {
     return (
@@ -33,7 +35,7 @@ const Gallery = ({ photos, isLoading, isError }: GalleryProps) => {
           We couldn&apos;t load the photos. Please try again later.
         </p>
       </div>
-    )
+    );
   }
 
   if (!isLoading && photos.length === 0) {
@@ -46,7 +48,7 @@ const Gallery = ({ photos, isLoading, isError }: GalleryProps) => {
           There are no images to display at the moment.
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -71,7 +73,7 @@ const Gallery = ({ photos, isLoading, isError }: GalleryProps) => {
         photo={selectedPhoto}
       />
     </>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;
